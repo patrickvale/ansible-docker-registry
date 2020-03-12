@@ -53,6 +53,9 @@
     name: '{{docker_registry_container_name}}'
     image: '{{docker_registry_container}}'
     pull: true
+    env:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /etc/letsencrypt/live/{{ansible_fqdn}}/fullchain.pem
+      REGISTRY_HTTP_TLS_KEY: /etc/letsencrypt/live/{{ansible_fqdn}}/privkey.pem
     published_ports:
       - '{{docker_registry_https_port}}:5000'
     volumes:
